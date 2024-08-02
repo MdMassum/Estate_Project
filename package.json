@@ -2,7 +2,7 @@
   "name": "estate_project",
   "version": "1.0.0",
   "main": "index.js",
-
+  "type": "module",
   "scripts": {
     "dev": "nodemon server/index.js",
     "start": "node server/index.js"
@@ -12,6 +12,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^4.19.2"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.2"
   }
 }
