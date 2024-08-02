@@ -1,0 +1,17 @@
+{
+  "name": "estate_project",
+  "version": "1.0.0",
+  "main": "index.js",
+
+  "scripts": {
+    "dev": "nodemon server/index.js",
+    "start": "node server/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
