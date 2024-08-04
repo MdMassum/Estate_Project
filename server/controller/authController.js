@@ -66,7 +66,7 @@ export const SignIn = async(req, res, next) =>{
 
 // creating sign in using google function
 export const Google = async(req,res,next)=>{
-    const {username, email, password, photo} = req.body;
+    const {username, email, photo} = req.body;
     let success = false;
 
     try {
