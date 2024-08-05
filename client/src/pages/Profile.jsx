@@ -33,7 +33,7 @@ function Profile() {
         setFileUploadError(true)
       },
       ()=>{
-        getDownloadURL(uploadTask.snapshot.ref).then
+        getDownloadURL(uploadTask.snapshot.ref).then   // used for uploading photo in firebase
         ((downloadUrl)=>{
           setFormData({...formData, avatar:downloadUrl})
         })

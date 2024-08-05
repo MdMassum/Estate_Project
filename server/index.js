@@ -6,6 +6,7 @@ import dotenv from 'dotenv'
 import ConnectToMongo from './config/db.js'
 import authRouter from './routes/authRoute.js'
 import userRouter from './routes/userRoute.js'
+import cookieParser from 'cookie-parser'
 
 dotenv.config()
 const app = express()
@@ -15,6 +16,7 @@ ConnectToMongo();
 
 app.use(express.json())  // we use this to use req.body for json file i.e now we can recieve and send json by req.body (see also body-parser was used earlier when express.json() was not there we can also use bodyParser.json() )
 // app.use(cors()); // for solving issue while connecting frontend and backend
+app.use(cookieParser()) // for accessing value in cookie
 
 // Available Routes
 app.use('/api/auth',authRouter);
