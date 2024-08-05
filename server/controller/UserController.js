@@ -2,9 +2,10 @@ import errorHandler from "../utils/errors.js";
 import User from '../models/User.js'
 import bcrypt from 'bcrypt'
 
+// update user account
 export const updateProfile= async(req, res, next)=>{
 
-    if(req.user.id !== req.params.id) return next(errorHandler(401, "Not authorize to update"))
+    if(req.user.id !== req.params.id) return next(errorHandler(401, "You can only update your own account"))
     try {
 
         if(req.body.password){
@@ -27,5 +28,21 @@ export const updateProfile= async(req, res, next)=>{
     } catch (error) {
         next(error);
     }
+}
 
+// delete user acoount
+export const deleteUser = async(req, res, next)=>{
+    if(req.user.id !== req.params.id) return next(errorHandler(401, "You can only delete your own account"))
+    try {
+        
+        await User.findByIdAndDelete(req.params.id);
+        res.clearCookie("access_token")
+        res.status(200).json({
+            success:true,
+            message:"User Account Deleted Successfully"
+        })
+
+    } catch (error) {
+        next(error);
+    }
 }
