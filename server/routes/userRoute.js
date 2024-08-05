@@ -8,4 +8,5 @@ const router = express.Router();
 router.post('/update/me/:id',verifyToken,updateProfile)
 router.delete('/delete-account/:id',verifyToken,deleteUser)
 
+
 export default router;

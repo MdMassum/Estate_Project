@@ -20,11 +20,9 @@ export const SignUp = async(req, res, next) =>{
         const newUser = await User.create({username, email, password:secPassword})
 
         success = true;
-        console.log(newUser);
         res.json({success, newUser}); // Return the JWT to the client upon successful user creation
 
     } catch (error) {
-        console.log(error);
         next(error);
     }    
 }
@@ -53,13 +51,12 @@ export const SignIn = async(req, res, next) =>{
         success = true;
         
         const {password:pass, ...rest} = user._doc;  // for removing password field and sending rest 
-        console.log(rest);
+    
         res.cookie('access_token',token,{httpOnly:true})
         .status(200)
         .json(rest);
 
     } catch (error) {
-        console.log(error);
         next(error)
     }
 }
@@ -108,6 +105,16 @@ export const Google = async(req,res,next)=>{
         }
     } catch (error) {
         next(error)
+    }
+}
+
+// logout functionality
+export const signOut=async(req,res,next)=>{
+    try {
+        res.clearCookie('access_token');
+        res.status(200).json("User has been logged Out")
+    } catch (error) {
+        next(error);
     }
 }
 
