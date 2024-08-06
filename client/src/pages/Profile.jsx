@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {getDownloadURL, getStorage, ref, uploadBytesResumable} from 'firebase/storage'
 import {app} from '../firebase'
 import { deleteFailure, deleteStart, deleteSuccess, signOutFailure, signOutStart, signOutSuccess, updateProfileFailure, updateProfileStart, updateProfileSuccess } from '../redux/user/userSlice';
+import {Link} from 'react-router-dom'
 
 function Profile() {
 
@@ -24,10 +25,11 @@ function Profile() {
     const fileName = new Date().getTime() + file.name; // so that filename is unique
     const storageRef = ref(storage,fileName);
 
-    const uploadTask = uploadBytesResumable(storageRef, file); // used for showing file uploaded percentage
+    const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on('state_changed', (snapshot) =>{
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      // below 2 line used for showing file uploaded percentage
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100; 
         setFilePerc(Math.round(progress))
       },
       (error)=>{
@@ -147,6 +149,9 @@ function Profile() {
 
           <button disabled={loading} className='uppercase bg-slate-700 text-white rounded-lg p-3 
           hover:opacity-90 disabled:opacity-90 '>{loading ? "Loading..." : "Update"}</button>
+          
+          <Link to={'/create-listing'} className='uppercase bg-green-700 text-white text-center rounded-lg p-3 
+          hover:opacity-95' >Create listing</Link>
       </form>
       <div className="flex justify-between mt-5">
         <span onClick={handleDelete} className='text-red-700 cursor-pointer'>Delete Account</span>
