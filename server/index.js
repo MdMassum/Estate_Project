@@ -4,8 +4,12 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import ConnectToMongo from './config/db.js'
+
+// importing routers -->
 import authRouter from './routes/authRoute.js'
 import userRouter from './routes/userRoute.js'
+import listingRouter from './routes/listingRoute.js'
+
 import cookieParser from 'cookie-parser'
 
 dotenv.config()
@@ -21,6 +25,7 @@ app.use(cookieParser()) // for accessing value in cookie
 // Available Routes
 app.use('/api/auth',authRouter);
 app.use('/api/user',userRouter)
+app.use('/api/listing',listingRouter)
 
 
 // server
