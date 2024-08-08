@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import ListingItem from '../components/ListingItem';
 
 function Search() {
 
@@ -14,6 +15,7 @@ function Search() {
     })
     const [listings, setListings] = useState();
     const [loading, setLoading] = useState(false);
+    const [showMore, setShowMore] = useState(false);
     const navigate = useNavigate();
 
     const handleChange=(e)=>{
@@ -62,7 +64,7 @@ function Search() {
         const searchQuery = urlParams.toString()
         navigate(`/search/?${searchQuery}`)
     }
-    console.log(listings);
+
     const fetchListings = async()=>{
         try {
             setLoading(true);
@@ -72,6 +74,12 @@ function Search() {
             const resp = await fetch(`/api/listing/getAllListing/?${searchQuery}`)
             const data = await resp.json();
 
+            if(data.length > 5){
+                setShowMore(true);
+            }
+            else{
+                setShowMore(false)
+            }
             setListings(data);
             setLoading(false);
 
@@ -79,6 +87,22 @@ function Search() {
             setLoading(false);
             console.log(error.message);
         }
+    }
+    const fetchMoreListing = async() =>{
+        const len = listings.length;
+        const startIndex = len;
+
+        const urlParams = new URLSearchParams(location.search);
+        urlParams.set('startIndex',startIndex)
+        const searchQuery = urlParams.toString()
+
+        const resp = await fetch(`/api/listing/getAllListing/?${searchQuery}`)
+        const data = await resp.json();
+
+        if(data.length < 6){
+            setShowMore(false);
+        }
+        setListings([...listings,...data]);
     }
     useEffect(()=>{
 
@@ -115,8 +139,8 @@ function Search() {
     },[location.search])
   return (
     <div className="w-screen">
-    <div className='flex flex-col md:flex-row'>
-        <div className="p-8 border-b-2 md:border-r-2 md:min-h-screen">
+    <div className='flex flex-col md:flex-row '>
+        <div className="p-8 border-b-2 md:border-r-2 md:min-h-screen md:w-[360px]">
             <form onSubmit={handleSubmit}
              className='flex flex-col gap-8'>
                 <div className="flex flex-col gap-2">
@@ -193,8 +217,28 @@ function Search() {
             </form>
         </div>  
         
-        <div className="">
-            <h1 className='text-3xl font-semibold border-b p-3 text-slate-700 text-center'>Listing results:</h1>
+        <div className="flex-1 p-7">
+            <h1 className='text-3xl font-semibold border-b p-3 text-slate-700 '>Listing results:</h1>
+            <div className="flex flex-wrap gap-4">
+            {!loading && !listings &&
+                <p className='text-xl text-slate-700 m-auto'> No Listing Found !!</p>}
+            {loading &&
+                <p className='text-xl text-slate-700 text-center w-full'>Loading...</p>
+            }
+            {
+                !loading && listings && listings.map((listing)=>(
+                    <ListingItem listing={listing} key={listing._id}/>
+                ))
+            }
+            {
+                showMore && 
+                <button
+                onClick={fetchMoreListing}
+                className='text-green-700 hover:underline p-3 text-center w-full outline-none bg-white border-none'>
+                    Show More
+                </button>
+            }
+            </div>
         </div>
     </div>
     </div>

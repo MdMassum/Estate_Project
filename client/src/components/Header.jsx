@@ -29,7 +29,7 @@ function Header() {
         }
     },[location.search])
   return (
-    <header className='bg-slate-200 shadow-md w-screen sticky top-0'>
+    <header className='bg-slate-200 shadow-md w-screen sticky top-0 z-10'>
         <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
             <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
             <span className='text-slate-500'>Massum</span>

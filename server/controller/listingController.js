@@ -74,8 +74,8 @@ export const getListing = async(req, res, next)=>{
 // get all listing along with searching & filters
 export const getAllListing = async(req, res, next) =>{
     try {
-        const limit = parseInt(req.query.limit) || 9;
-        const startIdx = parseInt(req.query.startIdx) || 0;
+        const limit = parseInt(req.query.limit) || 6;
+        const startIndex = parseInt(req.query.startIndex) || 0;
         let offer = req.query.offer;
 
         if(offer === undefined || offer ==='false'){ // then we have to show all listing with and without offer
@@ -107,13 +107,14 @@ export const getAllListing = async(req, res, next) =>{
         const listings = await Listing.find({
             name:{$regex:searchKey, $options:'i'},         // i means case inSensitive
             description:{$regex:searchKey, $options:'i'},  // will search for key in description
+            address:{$regex:searchKey, $options:'i'},
             offer,
             furnished,
             parking,
             type,
         }).sort(
             {[sort]:order}
-        ).limit(limit).skip(startIdx)  // for pagination
+        ).limit(limit).skip(startIndex)  // for pagination
 
         return res.status(200).json(listings);
 
