@@ -13,7 +13,7 @@ function Search() {
         sort:'created_at',
         order:'desc',
     })
-    const [listings, setListings] = useState();
+    const [listings, setListings] = useState([]);
     const [loading, setLoading] = useState(false);
     const [showMore, setShowMore] = useState(false);
     const navigate = useNavigate();
@@ -220,13 +220,13 @@ function Search() {
         <div className="flex-1 p-7">
             <h1 className='text-3xl font-semibold border-b p-3 mb-3 text-slate-700 dark:text-gray-300 '>Listing results:</h1>
             <div className="flex flex-wrap sm:gap-10 sm:mx-6 ">
-            {!loading && !listings &&
-                <p className='text-xl text-slate-700 m-auto'> No Listing Found !!</p>}
+            {!loading && listings.length === 0 &&
+                <p className='text-xl text-slate-700 m-auto dark:text-gray-400'> No Listing Found !!</p>}
             {loading &&
                 <p className='text-xl text-slate-700 text-center w-full'>Loading...</p>
             }
             {
-                !loading && listings && listings.map((listing)=>(
+                !loading && listings.length > 0 && listings.map((listing)=>(
                     <ListingItem listing={listing} key={listing._id}/>
                 ))
             }

@@ -78,7 +78,7 @@ export const Google = async(req,res,next)=>{
             success = true;
             
             const {password:pass, ...rest} = user._doc;  // for removing password field and sending rest 
-            console.log(rest);
+
             res.cookie('access_token',token,{httpOnly:true})
             .status(200)
             .json(rest);
@@ -98,7 +98,7 @@ export const Google = async(req,res,next)=>{
             success = true;
             
             const {password:pass, ...rest} = user._doc;  // for removing password field and sending rest 
-            console.log(rest);
+
             res.cookie('access_token',token,{httpOnly:true})
             .status(200)
             .json(rest);  

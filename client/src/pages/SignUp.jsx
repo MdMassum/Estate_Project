@@ -31,7 +31,6 @@ function SignUp() {
         body: JSON.stringify(formData)
       });
       const data = await resp.json();
-      console.log(data);
 
       if(data.success === false){
         setError(data.message)
@@ -77,7 +76,7 @@ function SignUp() {
 
           <Oauth/>
       </form>
-      <div className="flex flex-col gap-2 sm:gap-0 mt-5 mb-12 p-2 sm:mb-0 sm:p-0">
+      <div className="flex flex-col gap-2 sm:gap-0 mt-5 mb-12 p-2 sm:mb-4 sm:p-0">
         <div className="flex gap-3">
           <p>Have an Account ?</p>
           <Link to={'/sign-in'}>

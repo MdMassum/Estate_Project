@@ -74,7 +74,7 @@ function SignIn() {
 
           <Oauth/>
       </form>
-      <div className="flex flex-col gap-2 sm:gap-0 mt-5  mb-16 p-3.5 sm:mb-0 sm:p-0">
+      <div className="flex flex-col gap-2 sm:gap-0 mt-5  mb-16 p-3.5 sm:mb-14.5 sm:p-0">
         <div className="flex gap-3">
           <p>Don&apos;t Have an Account ?</p>
           <Link to={'/sign-up'}>

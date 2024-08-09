@@ -13,7 +13,7 @@ function Profile() {
   const [fileUploadError, setFileUploadError] = useState(false);
   const [formData, setFormData] = useState({})
   const [updateSuccess,setUpdateSuccess] = useState(false);
-  const [userListings, setUserListings] = useState(null)
+  const [userListings, setUserListings] = useState([])
   const [showListingError, setShowListingError] = useState(false)
   
   const {currentUser, loading, error} = useSelector((state)=>state.user);
@@ -128,9 +128,8 @@ function Profile() {
         setShowListingError(true);
         return;
       }
-     
       setUserListings(data);
-      console.log(userListings);
+
     } catch (error) {
       setShowListingError(true)
     }
@@ -202,7 +201,7 @@ function Profile() {
         {updateSuccess ? <p className='text-green-700 mt-5 text-sm'>User is Updated Successfully</p> 
         : ""}
         <button onClick={getUserListing} className='text-green-700 w-full mt-3 rounded-lg'>Show Listing</button>
-
+  
         {showListingError ? <p className='text-red-700 mt-5 text-sm'>Error showing Listings !!</p> 
         : ""}
         {
