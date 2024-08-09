@@ -4,11 +4,11 @@ import {MdLocationOn} from 'react-icons/md'
 
 function ListingItem({listing}) {
   return (
-    <div className='bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[250px] m-3'>
+    <div className='bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[349px] m-3'>
         <Link to={`/listing/${listing._id}`}>
             
             <img src={listing.imageUrls[0]} alt="Cover Page" 
-            className='h-[320px] sm:h-[220px] w-full object-cover hover:scale-105 transition-scale duration-300'/>
+            className='h-[200px] sm:h-[220px] w-full object-cover hover:scale-105 transition-scale duration-300'/>
 
             <div className="p-3 flex flex-col">
                 <p className='font-semibold text-slate-700 text-lg truncate mb-2 '>{listing.name}</p>

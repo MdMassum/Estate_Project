@@ -17,7 +17,7 @@ function Home() {
   const fetchOfferListing=async()=>{
     try {
        
-      const resp = await fetch('/api/listing/getAllListing?offer=true&limit=4');
+      const resp = await fetch('/api/listing/getAllListing?offer=true&limit=3');
       const data = await resp.json();
 
       setOfferListing(data);
@@ -32,7 +32,7 @@ function Home() {
   const fetchRentListing=async()=>{
     try {
        
-      const resp = await fetch('/api/listing/getAllListing?type=rent&limit=4');
+      const resp = await fetch('/api/listing/getAllListing?type=rent&limit=3');
       const data = await resp.json();
 
       setRentListing(data);
@@ -47,7 +47,7 @@ function Home() {
   const fetchSaleListing=async()=>{
     try {
        
-      const resp = await fetch('/api/listing/getAllListing?type=sale&limit=4');
+      const resp = await fetch('/api/listing/getAllListing?type=sale&limit=3');
       const data = await resp.json();
 
       setSaleListing(data);
@@ -66,17 +66,17 @@ function Home() {
     <div>
       {/* top page */}
       <div className="flex flex-col gap-6 p-28 px-3 mx-auto max-w-6xl">
-          <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>Find your next 
-          <span className='text-slate-500'> perfect</span>
+          <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl dark:text-slate-400'>Find your next 
+          <span className='text-slate-500 dark:text-slate-200'> perfect</span>
           <br />
           place with ease
           </h1>
-          <div className="text-gray-400 text-xs sm:text-sm">
+          <div className="text-gray-400 text-xs sm:text-sm dark:text-gray-300">
             Massum Estate is the best place to find your next perfect place to live
             <br />
             We have a wide range of properties to choose from.
           </div>
-          <Link className='text-xs sm:text-sm text-blue-800 font-bold hover:underline' to={'/search'}>Explore Now..</Link>
+          <Link className='text-xs sm:text-sm text-blue-800 dark:text-blue-500 font-bold hover:underline mb-3' to={'/search'}>Explore Now..</Link>
       </div>
 
       {/* web slider */}
@@ -93,15 +93,15 @@ function Home() {
       </Swiper>
       </div>
       {/* listing on rent sale & offer */}
-      <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10">
+      <div className="max-w-6xl mx-auto p-3 flex flex-col gap-6 my-10">
         {
           offerListing && offerListing.length>0 && (
               <div className="">
                 <div className="my-3">
-                  <h2 className='text-2xl font-semibold text-slate-600 mx-2'>Recent Offers</h2>
-                  <Link to={'/search?offer=true'} className='mx-2 text-xs sm:text-sm text-blue-800 font-bold hover:underline'>Show More Offers..</Link>
+                  <h2 className='text-2xl font-semibold text-slate-600 dark:text-slate-400 mx-2'>Recent Offers</h2>
+                  <Link to={'/search?offer=true'} className='mx-2 text-xs sm:text-sm text-blue-800 font-bold hover:underline dark:text-blue-400'>Show More Offers..</Link>
                 </div>
-                <div className="flex gap-4 flex-wrap">
+                <div className="flex gap-1 flex-wrap">
                 {
                 offerListing && offerListing.length>0 && (
                   offerListing.map((listing)=>(
@@ -116,10 +116,10 @@ function Home() {
           rentListing && rentListing.length>0 && (
               <div className="">
                 <div className="my-3">
-                  <h2 className='text-2xl font-semibold text-slate-600 mx-2'>Recent places for rent</h2>
-                  <Link to={'/search?type=rent'} className='mx-2 text-xs sm:text-sm text-blue-800 font-bold hover:underline'>Show More places for rent..</Link>
+                  <h2 className='text-2xl font-semibold text-slate-600 dark:text-slate-400 mx-2'>Recent places for rent</h2>
+                  <Link to={'/search?type=rent'} className='mx-2 text-xs sm:text-sm text-blue-800 font-bold hover:underline dark:text-blue-400'>Show More places for rent..</Link>
                 </div>
-                <div className="flex gap-4 flex-wrap">
+                <div className="flex gap-1 flex-wrap">
                 {
                 rentListing && rentListing.length>0 && (
                   rentListing.map((listing)=>(
@@ -134,10 +134,10 @@ function Home() {
           saleListing && saleListing.length>0 && (
               <div className="">
                 <div className="my-3">
-                  <h2 className='text-2xl font-semibold text-slate-600 mx-2'>Recent places for sale</h2>
-                  <Link to={'/search?type=sale'} className='mx-2 text-xs sm:text-sm text-blue-800 font-bold hover:underline'>Show More places for sale..</Link>
+                  <h2 className='text-2xl font-semibold text-slate-600 dark:text-slate-400 mx-2'>Recent places for sale</h2>
+                  <Link to={'/search?type=sale'} className='mx-2 text-xs sm:text-sm text-blue-800 font-bold hover:underline dark:text-blue-400'>Show More places for sale..</Link>
                 </div>
-                <div className="flex gap-4 flex-wrap">
+                <div className="flex gap-1 flex-wrap">
                 {
                 saleListing && saleListing.length>0 && (
                   saleListing.map((listing)=>(

@@ -82,7 +82,7 @@ export default function Listing() {
                 />
           </div>
           {copied && (
-            <p className='fixed top-[23%] right-[5%] z-10 rounded-md bg-slate-100 p-2'>
+            <p className='fixed top-[23%] right-[5%] z-10 rounded-md bg-slate-100 p-2 dark:text-black'>
               Link copied!
             </p>
           )}
@@ -94,8 +94,8 @@ export default function Listing() {
                     : listing.regularPrice.toLocaleString('en-US')}
                 {listing.type === 'rent' && ' / month'}
                 </p>
-                <p className='flex items-center mt-6 gap-2 text-slate-600  text-sm'>
-                <FaMapMarkerAlt className='text-green-700' />
+                <p className='flex items-center mt-6 gap-2 text-slate-700 dark:text-slate-400 text-sm'>
+                <FaMapMarkerAlt className='text-green-900 dark:text-green-600' />
                 {listing.address}
                 </p>
                 <div className='flex gap-4'>
@@ -108,11 +108,11 @@ export default function Listing() {
                         </p>
                     )}
                 </div>
-            <p className='text-slate-800'>
-              <span className='font-semibold text-black'>Description - </span>
+            <p className='text-gray-700 dark:text-gray-400'>
+              <span className='font-semibold text-black dark:text-gray-300'>Description - </span>
               {listing.description}
             </p>
-            <ul className='text-green-900 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6'>
+            <ul className='text-green-900 dark:text-green-600 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6'>
               <li className='flex items-center gap-1 whitespace-nowrap '>
                 <FaBed className='text-lg' />
                 {listing.bedrooms > 1

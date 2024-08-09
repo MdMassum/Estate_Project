@@ -31,10 +31,10 @@ function Header() {
   return (
     <header className='bg-slate-200 shadow-md w-screen sticky top-0 z-10'>
         <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
-            <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
+            <NavLink to='/' className='font-bold text-sm sm:text-xl flex flex-wrap'>
             <span className='text-slate-500'>Massum</span>
             <span className='text-slate-700'>Estate</span>
-            </h1>
+            </NavLink>
             <form onSubmit={handleSubmit} className="bg-slate-100 text-slate-700 p-3 rounded-lg flex items-center ">
                 <input type="text" placeholder='Search...' 
                     className='bg-transparent focus:outline-none w-24 sm:w-64'
@@ -42,7 +42,7 @@ function Header() {
                     onChange={(e)=>setSearchKey(e.target.value)}
                 />
                 <button className='p-0 outline-none border-none'>
-                    <FaSearch className='text-slate-600 text-xl cursor-pointer' />
+                    <FaSearch className='bg-white text-xl cursor-pointer' />
                 </button>
                 
             </form>
@@ -56,10 +56,9 @@ function Header() {
                 <NavLink to={'/profile'}>
                 {
                     currentUser ? (<img src={currentUser.avatar} alt='Profile' className='w-7 h-7 rounded-full object-cover' />) : 
-                    (<li className='hidden sm:inline text-slate-700 hover:underline'>SignIn</li>)
+                    (<li className='text-slate-700 hover:underlinetext-sm sm:text'>LogIn  </li>)
                 }
                 </NavLink>
-                
             </ul>
         </div>
 

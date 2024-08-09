@@ -140,7 +140,7 @@ function Search() {
   return (
     <div className="w-screen">
     <div className='flex flex-col md:flex-row '>
-        <div className="p-8 border-b-2 md:border-r-2 md:min-h-screen md:w-[360px]">
+        <div className="p-8 md:border-r-2 md:min-h-screen md:w-[360px]">
             <form onSubmit={handleSubmit}
              className='flex flex-col gap-8'>
                 <div className="flex flex-col gap-2">
@@ -218,8 +218,8 @@ function Search() {
         </div>  
         
         <div className="flex-1 p-7">
-            <h1 className='text-3xl font-semibold border-b p-3 text-slate-700 '>Listing results:</h1>
-            <div className="flex flex-wrap gap-4">
+            <h1 className='text-3xl font-semibold border-b p-3 mb-3 text-slate-700 dark:text-gray-300 '>Listing results:</h1>
+            <div className="flex flex-wrap sm:gap-10 sm:mx-6 ">
             {!loading && !listings &&
                 <p className='text-xl text-slate-700 m-auto'> No Listing Found !!</p>}
             {loading &&
@@ -234,7 +234,7 @@ function Search() {
                 showMore && 
                 <button
                 onClick={fetchMoreListing}
-                className='text-green-700 hover:underline p-3 text-center w-full outline-none bg-white border-none'>
+                className='text-green-700 hover:underline p-3 text-center w-full outline-none bg-white border-none dark:bg-transparent'>
                     Show More
                 </button>
             }

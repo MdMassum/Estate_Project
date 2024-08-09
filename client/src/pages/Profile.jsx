@@ -164,7 +164,7 @@ function Profile() {
   return (
     <div className="w-screen">
     <div className='p-3 max-w-lg mx-auto'>
-      <h1 className='text-3xl text-center font-semibold my-7'>Profile</h1>
+      <h1 className='text-3xl text-center font-semibold my-2'>Profile</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
 
           <input type='file' ref={fileRef} onChange={(e)=>setFile(e.target.files[0])} className='hidden' accept='image/*' />
@@ -201,7 +201,7 @@ function Profile() {
         : ""}
         {updateSuccess ? <p className='text-green-700 mt-5 text-sm'>User is Updated Successfully</p> 
         : ""}
-        <button onClick={getUserListing} className='text-green-700 w-full m-5'>Show Listing</button>
+        <button onClick={getUserListing} className='text-green-700 w-full mt-3 rounded-lg'>Show Listing</button>
 
         {showListingError ? <p className='text-red-700 mt-5 text-sm'>Error showing Listings !!</p> 
         : ""}
