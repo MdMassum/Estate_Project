@@ -15,10 +15,11 @@ import Footer from './components/Footer';
 function Layout() {
   const location = useLocation();
   const showFooter = ['/', '/search', '/about'];
+  const showHeader = ['/', '/search', '/about'];
 
   return (
     <>
-      <Header />
+      {showHeader.includes(location.pathname) && <Header /> }
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />

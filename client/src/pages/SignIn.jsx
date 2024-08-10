@@ -75,13 +75,22 @@ function SignIn() {
           <Oauth/>
       </form>
       <div className="flex flex-col gap-2 sm:gap-0 mt-5  mb-16 p-3.5 sm:mb-14.5 sm:p-0">
-        <div className="flex gap-3">
-          <p>Don&apos;t Have an Account ?</p>
-          <Link to={'/sign-up'}>
-            <span className='text-blue-700'>Sign Up</span>
-          </Link>
+        <div className="flex flex-col ">
+          <div className="flex gap-3 my-3">
+            <p>Don&apos;t Have an Account ?</p>
+            <Link to={'/sign-up'}>
+              <span className='text-blue-700'>Sign Up</span>
+            </Link>
           </div>
-          {error && <p className='text-red-500'>{error}</p>}
+          <div className='flex gap-3'>
+            <p>Continue Without Login ?</p>
+            <Link to={'/'}>
+              <span className='text-blue-700'>Home</span>
+            </Link>
+          </div>
+          <p className='text-yellow-600 dark:text-yellow-400 text-xs'>Note : You need to login to create listing or contact landlord !!</p>
+          </div>
+          {error && <p className='text-red-500 my-4'>{error}</p>}
         </div>
       </div>
     </div>
