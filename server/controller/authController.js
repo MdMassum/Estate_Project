@@ -47,7 +47,7 @@ export const SignIn = async(req, res, next) =>{
                 id: user._id 
             }
         };
-        const token = jwt.sign(payload, process.env.JWT_SECRET);
+        const token = jwt.sign(payload, process.env.JWT_SECRET,{ expiresIn: '1h' });
         success = true;
         
         const {password:pass, ...rest} = user._doc;  // for removing password field and sending rest 
@@ -74,7 +74,7 @@ export const Google = async(req,res,next)=>{
                     id: user._id 
                 }
             };
-            const token = jwt.sign(payload, process.env.JWT_SECRET);
+            const token = jwt.sign(payload, process.env.JWT_SECRET,{ expiresIn: '1h' });
             success = true;
             
             const {password:pass, ...rest} = user._doc;  // for removing password field and sending rest 
@@ -94,7 +94,7 @@ export const Google = async(req,res,next)=>{
             const user = await User.create({username, email, password:hashPassword, avatar:photo})
 
             // create token for direct login
-            const token = jwt.sign({id:user._id}, process.env.JWT_SECRET);
+            const token = jwt.sign({id:user._id}, process.env.JWT_SECRET,{ expiresIn: '1h' });
             success = true;
             
             const {password:pass, ...rest} = user._doc;  // for removing password field and sending rest 

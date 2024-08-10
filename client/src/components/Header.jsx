@@ -32,8 +32,8 @@ function Header() {
     <header className='bg-slate-200 shadow-md w-screen sticky top-0 z-10'>
         <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
             <NavLink to='/' className='font-bold text-sm sm:text-xl flex flex-wrap'>
-            <span className='text-slate-500'>Massum</span>
-            <span className='text-slate-700'>Estate</span>
+            <span className='text-slate-500'>Home</span>
+            <span className='text-slate-700'>Connect</span>
             </NavLink>
             <form onSubmit={handleSubmit} className="bg-slate-100 text-slate-700 p-3 rounded-lg flex items-center ">
                 <input type="text" placeholder='Search...' 

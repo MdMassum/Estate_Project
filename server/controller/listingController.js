@@ -105,7 +105,7 @@ export const getAllListing = async(req, res, next) =>{
 
         // finding the listing based on parameters
         const listings = await Listing.find({
-            description:{$regex:searchKey, $options:'i'},         // i means case inSensitive
+            name:{$regex:searchKey, $options:'i'},         // i means case inSensitive
             offer,
             furnished,
             parking,

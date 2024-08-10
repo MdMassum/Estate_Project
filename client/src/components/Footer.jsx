@@ -8,8 +8,8 @@ function Footer() {
             <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
                 <div className="sm:flex sm:items-center sm:justify-between">
                     <p className='lg:block hidden font-bold text-sm sm:text-xl  flex-wrap sm:mx-10'>
-                        <span className='text-slate-500 dark:text-slate-400'>Massum</span>
-                        <span className='text-slate-700 dark:text-slate-500'>Estate</span>
+                        <span className='text-slate-500 dark:text-slate-400'>Home</span>
+                        <span className='text-slate-700 dark:text-slate-500'>Connect</span>
                     </p>
                     <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-300 mr-10">
                         <li>
@@ -27,7 +27,7 @@ function Footer() {
                     </ul>
                 </div>
                 <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-600 lg:my-8" />
-                <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-300">© 2024 <span href="#" >MassumEstate™</span>. All Rights Reserved.</span>
+                <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-300">© 2024 <span href="#" >HomeConnect™</span>. All Rights Reserved.</span>
             </div>
         </footer>
 
