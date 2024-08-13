@@ -15,7 +15,7 @@ import Footer from './components/Footer';
 function Layout() {
   const location = useLocation();
   const showFooter = ['/', '/search', '/about'];
-  const showHeader = ['/', '/search', '/about'];
+  const showHeader = ['/', '/search', '/about', '/profile'];
 
   return (
     <>

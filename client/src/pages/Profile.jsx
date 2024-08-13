@@ -4,6 +4,8 @@ import {getDownloadURL, getStorage, ref, uploadBytesResumable} from 'firebase/st
 import {app} from '../firebase'
 import { deleteFailure, deleteStart, deleteSuccess, signOutFailure, signOutStart, signOutSuccess, updateProfileFailure, updateProfileStart, updateProfileSuccess } from '../redux/user/userSlice';
 import {Link} from 'react-router-dom'
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 
 function Profile() {
 
@@ -15,6 +17,7 @@ function Profile() {
   const [updateSuccess,setUpdateSuccess] = useState(false);
   const [userListings, setUserListings] = useState([])
   const [showListingError, setShowListingError] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
   
   const {currentUser, loading, error} = useSelector((state)=>state.user);
   const dispatch = useDispatch()
@@ -153,6 +156,11 @@ function Profile() {
       alert(error.message);
     }
   }
+
+  const handleToggle=()=>{
+    setShowPassword(!showPassword)
+  }
+
   useEffect(() => {
     setFileUploadError(false);
     if(file){
@@ -184,7 +192,15 @@ function Profile() {
 
           <input onChange={handleChange} defaultValue={currentUser.email} type="text"  placeholder='email' id='email' className='border rounded-lg p-3'/>
 
-          <input onChange={handleChange} defaultValue={""} type="password"  placeholder='update password' id='password' className='border rounded-lg p-3'/>
+          <div className="flex gap-1 items-center border rounded-lg p-2">
+              <input onChange={handleChange} defaultValue={""} required type={showPassword ? "text":"password"} placeholder='update password' className="outline-none flex-1 p-2 rounded-lg" id='password'/>
+              <div className='cursor-pointer p-2' onClick={handleToggle}>
+                {showPassword ?
+                 <FaEyeSlash className="text-gray-700 dark:text-gray-300 bg-transparent w-6 h-6"/> 
+                 :<FaEye className="text-gray-700 dark:text-gray-300 bg-transparent w-6 h-6" />
+                 }
+              </div>
+          </div>
 
           <button disabled={loading} className='uppercase bg-slate-700 text-white rounded-lg p-3 
           hover:opacity-90 disabled:opacity-90 '>{loading ? "Updating..." : "Update"}</button>
