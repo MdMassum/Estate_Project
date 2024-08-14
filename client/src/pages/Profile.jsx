@@ -193,7 +193,7 @@ function Profile() {
           <input onChange={handleChange} defaultValue={currentUser.email} type="text"  placeholder='email' id='email' className='border rounded-lg p-3'/>
 
           <div className="flex gap-1 items-center border rounded-lg p-2">
-              <input onChange={handleChange} defaultValue={""} required type={showPassword ? "text":"password"} placeholder='update password' className="outline-none flex-1 p-2 rounded-lg" id='password'/>
+              <input onChange={handleChange} defaultValue={""} type={showPassword ? "text":"password"} placeholder='update password' className="outline-none flex-1 p-2 rounded-lg" id='password'/>
               <div className='cursor-pointer p-2' onClick={handleToggle}>
                 {showPassword ?
                  <FaEyeSlash className="text-gray-700 dark:text-gray-300 bg-transparent w-6 h-6"/> 
