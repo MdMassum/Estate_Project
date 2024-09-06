@@ -14,6 +14,8 @@ import cookieParser from 'cookie-parser'
 dotenv.config()
 const app = express()
 
+const PORT = process.env.PORT || 3000;
+
 // connecting database 
 ConnectToMongo();
 
@@ -32,7 +34,7 @@ app.get('*',(req,res,next)=>{
     res.sendFile(path.join(__dirname,'client','dist','index.html'))
 })
 // server
-app.listen(process.env.PORT, ()=>{
+app.listen(PORT, ()=>{
     console.log("Server running on port 3000 !!")
 })
 
