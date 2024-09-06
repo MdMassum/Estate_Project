@@ -12,4 +12,7 @@ export default defineConfig({
     },
   },
   plugins: [react()],
+  build: {
+    outDir: 'dist'  // Vite's build output directory
+  },
 })
