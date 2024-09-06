@@ -32,7 +32,7 @@ app.get('*',(req,res,next)=>{
     res.sendFile(path.join(__dirname,'client','dist','index.html'))
 })
 // server
-app.listen(3000, ()=>{
+app.listen(process.env.PORT, ()=>{
     console.log("Server running on port 3000 !!")
 })
 
