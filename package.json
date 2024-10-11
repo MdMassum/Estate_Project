@@ -26,7 +26,7 @@
   "devDependencies": {
     "http-proxy-middleware": "^3.0.0"
   },
-    "engines": {
-      "node": "16.x"
-    }
+  "engines": {
+    "node": ">=16.x"
+  }
 }
