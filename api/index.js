@@ -19,7 +19,6 @@ const PORT = process.env.PORT || 3000;
 // connecting database 
 ConnectToMongo();
 
-const __dirname = path.resolve();
 app.use(express.json())  // we use this to use req.body for json file i.e now we can recieve and send json by req.body (see also body-parser was used earlier when express.json() was not there we can also use bodyParser.json() )
 // app.use(cors()); // for solving issue while connecting frontend and backend
 app.use(cookieParser()) // for accessing value in cookie
@@ -29,10 +28,16 @@ app.use('/api/auth',authRouter);
 app.use('/api/user',userRouter)
 app.use('/api/listing',listingRouter)
 
-app.use(express.static(path.join(__dirname,'/client/dist')))
-app.get('*',(req,res,next)=>{
-    res.sendFile(path.join(__dirname,'client','dist','index.html'))
-})
+// removing this files for vercel deployment -->
+// const __dirname = path.resolve();
+// app.use(express.static(path.join(__dirname,'/client/dist')))
+// app.get('*',(req,res,next)=>{
+//     res.sendFile(path.join(__dirname,'client','dist','index.html'))
+// })
+app.get('*', (req, res) => {
+    res.status(404).json({ message: "Not Found" });
+  });
+  
 // server  //for deploying in vercel this not needed
 // app.listen(PORT, ()=>{
 //     console.log("Server running on port 3000 !!")
