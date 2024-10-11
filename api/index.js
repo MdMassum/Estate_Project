@@ -33,10 +33,10 @@ app.use(express.static(path.join(__dirname,'/client/dist')))
 app.get('*',(req,res,next)=>{
     res.sendFile(path.join(__dirname,'client','dist','index.html'))
 })
-// server
-app.listen(PORT, ()=>{
-    console.log("Server running on port 3000 !!")
-})
+// server  //for deploying in vercel this not needed
+// app.listen(PORT, ()=>{
+//     console.log("Server running on port 3000 !!")
+// })
 
 // error handling 
 app.use((err,req,res,next)=>{
@@ -50,3 +50,5 @@ app.use((err,req,res,next)=>{
         message
     })
 })
+
+export default app;  // This exports the app for Vercel to use as a serverless function
