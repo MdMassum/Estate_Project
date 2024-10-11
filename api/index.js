@@ -28,20 +28,15 @@ app.use('/api/auth',authRouter);
 app.use('/api/user',userRouter)
 app.use('/api/listing',listingRouter)
 
-// removing this files for vercel deployment -->
-// const __dirname = path.resolve();
-// app.use(express.static(path.join(__dirname,'/client/dist')))
-// app.get('*',(req,res,next)=>{
-//     res.sendFile(path.join(__dirname,'client','dist','index.html'))
-// })
-app.get('*', (req, res) => {
-    res.status(404).json({ message: "Not Found" });
-  });
-  
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname,'/client/dist')))
+app.get('*',(req,res,next)=>{
+    res.sendFile(path.join(__dirname,'client','dist','index.html'))
+})
 // server  //for deploying in vercel this not needed
-// app.listen(PORT, ()=>{
-//     console.log("Server running on port 3000 !!")
-// })
+app.listen(PORT, ()=>{
+    console.log("Server running on port 3000 !!")
+})
 
 // error handling 
 app.use((err,req,res,next)=>{
@@ -55,5 +50,3 @@ app.use((err,req,res,next)=>{
         message
     })
 })
-
-export default app;  // This exports the app for Vercel to use as a serverless function
