@@ -16,7 +16,7 @@ dotenv.config()
 const app = express()
 
 app.use(cors({
-    origin:'*',     // frontend url
+    origin:'https://masum-estate.vercel.app',     // frontend url
     credentials: true
 }))
 

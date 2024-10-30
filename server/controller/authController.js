@@ -56,7 +56,8 @@ export const SignIn = async(req, res, next) =>{
         {
             httpOnly:true,
             secure: true,  // for production
-            sameSite: 'None'
+            sameSite: 'None',
+            path: '/',
         })
         .status(200)
         .json(rest);
