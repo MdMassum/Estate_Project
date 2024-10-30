@@ -3,6 +3,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import ConnectToMongo from './config/db.js'
 import path from 'path'
+import cors from 'cors'
 
 // importing routers -->
 import authRouter from './routes/authRoute.js'
@@ -14,6 +15,10 @@ import cookieParser from 'cookie-parser'
 dotenv.config()
 const app = express()
 
+app.use(cors({
+    origin:'*',
+}))
+
 const PORT = process.env.PORT || 3000;
 
 // connecting database 
@@ -22,6 +27,10 @@ ConnectToMongo();
 app.use(express.json())  // we use this to use req.body for json file i.e now we can recieve and send json by req.body (see also body-parser was used earlier when express.json() was not there we can also use bodyParser.json() )
 // app.use(cors()); // for solving issue while connecting frontend and backend
 app.use(cookieParser()) // for accessing value in cookie
+
+app.get('/',(req,res)=>{
+    res.send("Server Running")
+})
 
 // Available Routes
 app.use('/api/auth',authRouter);
