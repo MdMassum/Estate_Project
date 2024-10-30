@@ -4,9 +4,9 @@ import { createListing, deleteListing, editListing, getAllListing, getListing } 
 
 const router = express.Router();
 
-router.post('/create', createListing)  // removed verifyToken
-router.delete('/delete/:id', deleteListing) // removed verifyToken
-router.put('/update/:id', editListing) // removed verifyToken
+router.post('/create',verifyToken ,createListing)
+router.delete('/delete/:id',verifyToken ,deleteListing)
+router.put('/update/:id',verifyToken ,editListing)
 router.get('/getListing/:id',getListing)
 router.get('/getAllListing',getAllListing)
 

@@ -105,12 +105,7 @@ export const Google = async(req,res,next)=>{
             
             const {password:pass, ...rest} = user._doc;  // for removing password field and sending rest 
 
-            res.cookie('access_token',token,{
-                httpOnly:true,
-                secure: true,  // for production
-                sameSite: 'None',
-                path: '/',
-            })
+            res.cookie('access_token',token,{httpOnly:true})
             .status(200)
             .json(rest);  
         }
