@@ -52,7 +52,12 @@ export const SignIn = async(req, res, next) =>{
         
         const {password:pass, ...rest} = user._doc;  // for removing password field and sending rest 
     
-        res.cookie('access_token',token,{httpOnly:true})
+        res.cookie('access_token',token,
+        {
+            httpOnly:true,
+            secure: process.env.NODE_ENV === 'production',  // Set secure only in production
+            sameSite: 'None'
+        })
         .status(200)
         .json(rest);
 
