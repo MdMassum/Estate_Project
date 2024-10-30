@@ -71,7 +71,7 @@ function Search() {
             const urlParams = new URLSearchParams(location.search);
             const searchQuery = urlParams.toString()
 
-            const resp = await fetch(`/api/listing/getAllListing/?${searchQuery}`)
+            const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/listing/getAllListing/?${searchQuery}`)
             const data = await resp.json();
 
             if(data.length > 5){
@@ -96,7 +96,7 @@ function Search() {
         urlParams.set('startIndex',startIndex)
         const searchQuery = urlParams.toString()
 
-        const resp = await fetch(`/api/listing/getAllListing/?${searchQuery}`)
+        const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/listing/getAllListing/?${searchQuery}`)
         const data = await resp.json();
 
         if(data.length < 6){

@@ -125,7 +125,7 @@ export default function createListing() {
             setLoading(true);
             setError(false);
 
-            const resp = await fetch('/api/listing/create',{
+            const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/listing/create`,{
                 method: "POST",
                 headers:{"Content-Type": "application/json"},
                 body: JSON.stringify({...formData,userRef:currentUser._id})

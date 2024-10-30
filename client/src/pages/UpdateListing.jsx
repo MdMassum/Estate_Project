@@ -127,7 +127,7 @@ export default function UpdateListing() {
             setLoading(true);
             setError(false);
 
-            const resp = await fetch(`/api/listing/update/${formData._id}`,{
+            const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/listing/update/${formData._id}`,{
                 method: "PUT",
                 headers:{"Content-Type": "application/json"},
                 body: JSON.stringify(formData)
@@ -151,7 +151,7 @@ export default function UpdateListing() {
     const ListingDetails = async()=>{
 
         const listingId = params.listingId;  // since we use listingId in app.jsx in router
-        const resp = await fetch(`/api/listing/getListing/${listingId}`,{
+        const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/listing/getListing/${listingId}`,{
             method: "GET",
             headers:{"Content-Type": "application/json"}
         })

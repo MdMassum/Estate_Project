@@ -17,7 +17,7 @@ function Home() {
   const fetchOfferListing=async()=>{
     try {
        
-      const resp = await fetch('/api/listing/getAllListing?offer=true&limit=3');
+      const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/listing/getAllListing?offer=true&limit=3`);
       const data = await resp.json();
 
       setOfferListing(data);
@@ -32,7 +32,7 @@ function Home() {
   const fetchRentListing=async()=>{
     try {
        
-      const resp = await fetch('/api/listing/getAllListing?type=rent&limit=3');
+      const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/listing/getAllListing?type=rent&limit=3`);
       const data = await resp.json();
 
       setRentListing(data);
@@ -47,7 +47,7 @@ function Home() {
   const fetchSaleListing=async()=>{
     try {
        
-      const resp = await fetch('/api/listing/getAllListing?type=sale&limit=3');
+      const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/listing/getAllListing?type=sale&limit=3`);
       const data = await resp.json();
 
       setSaleListing(data);

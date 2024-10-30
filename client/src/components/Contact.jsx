@@ -12,7 +12,7 @@ function Contact({listing}) {
     }
     const fetchUser = async() =>{
         try {
-            const resp = await fetch(`/api/user/${listing.userRef}`)
+            const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/user/${listing.userRef}`)
             const data = await resp.json();
 
             if(data.success === false){

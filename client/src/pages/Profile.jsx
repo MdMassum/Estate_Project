@@ -58,7 +58,7 @@ function Profile() {
   const handleDelete = async() =>{
     try {
       dispatch(deleteStart())
-      const resp = await fetch(`/api/user/delete-account/${currentUser._id}`,{
+      const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/user/delete-account/${currentUser._id}`,{
         method: "DELETE",
         headers:{"Content-Type": "application/json"},
       })
@@ -78,7 +78,7 @@ function Profile() {
   const handleSignOut=async()=>{
     try {
       dispatch(signOutStart())
-      const resp = await fetch(`/api/auth/sign-out`,{
+      const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/auth/sign-out`,{
         method: "POST",
         headers:{"Content-Type": "application/json"},
       })
@@ -99,7 +99,7 @@ function Profile() {
     try {
       dispatch(updateProfileStart());
 
-      const resp = await fetch(`/api/user/update/me/${currentUser._id}`,{
+      const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/user/update/me/${currentUser._id}`,{
         method: "POST",
         headers:{"Content-Type": "application/json"},
         body: JSON.stringify(formData)
@@ -124,7 +124,7 @@ function Profile() {
   const getUserListing = async()=>{
     try {
       setShowListingError(false);
-      const resp = await fetch(`api/user/listings/${currentUser._id}`);
+      const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/user/listings/${currentUser._id}`);
       const data = await resp.json();
 
       if(data.success === false){
@@ -142,7 +142,7 @@ function Profile() {
 
   const handleListingDelete = async(id)=>{
     try {
-      const data = await fetch(`api/listing/delete/${id}`,{
+      const data = await fetch(`${import.meta.env.VITE_SERVER_URL}api/listing/delete/${id}`,{
         method: "DELETE",
         headers:{"Content-Type": "application/json"},
       })

@@ -17,7 +17,7 @@ function Oauth() {
 
         const result = await signInWithPopup(auth,provider)
         // console.log(result) // google will send the data in json format
-        const res = await fetch('/api/auth/google',{
+        const res = await fetch(`${import.meta.env.VITE_SERVER_URL}api/auth/google`,{
           method: "POST",
           headers:{"Content-Type": "application/json"},
           body: JSON.stringify({
