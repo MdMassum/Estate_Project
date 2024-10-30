@@ -130,6 +130,7 @@ export default function UpdateListing() {
             const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/listing/update/${formData._id}`,{
                 method: "PUT",
                 headers:{"Content-Type": "application/json"},
+                credentials: 'include', // This is crucial for cross-site cookies
                 body: JSON.stringify(formData)
             })
 
@@ -153,7 +154,8 @@ export default function UpdateListing() {
         const listingId = params.listingId;  // since we use listingId in app.jsx in router
         const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/listing/getListing/${listingId}`,{
             method: "GET",
-            headers:{"Content-Type": "application/json"}
+            headers:{"Content-Type": "application/json"},
+            credentials: 'include' // This is crucial for cross-site cookies
         })
         const data = await resp.json();
         setFormData(data);

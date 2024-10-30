@@ -128,6 +128,7 @@ export default function createListing() {
             const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/listing/create`,{
                 method: "POST",
                 headers:{"Content-Type": "application/json"},
+                credentials: 'include', // This is crucial for cross-site cookies
                 body: JSON.stringify({...formData,userRef:currentUser._id})
             })
 

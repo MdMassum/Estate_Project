@@ -102,6 +102,7 @@ function Profile() {
       const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/user/update/me/${currentUser._id}`,{
         method: "POST",
         headers:{"Content-Type": "application/json"},
+        credentials: 'include', // This is crucial for cross-site cookies
         body: JSON.stringify(formData)
       });
       const data = await resp.json();
@@ -124,7 +125,9 @@ function Profile() {
   const getUserListing = async()=>{
     try {
       setShowListingError(false);
-      const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/user/listings/${currentUser._id}`);
+      const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/user/listings/${currentUser._id}`,{
+        credentials: 'include', // This is crucial for cross-site cookies
+      });
       const data = await resp.json();
 
       if(data.success === false){
@@ -145,6 +148,7 @@ function Profile() {
       const data = await fetch(`${import.meta.env.VITE_SERVER_URL}api/listing/delete/${id}`,{
         method: "DELETE",
         headers:{"Content-Type": "application/json"},
+        credentials: 'include', // This is crucial for cross-site cookies
       })
       const resp = data.json();
       if(resp.success === false){
