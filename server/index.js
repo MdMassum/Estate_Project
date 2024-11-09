@@ -17,6 +17,14 @@ const app = express()
 
 app.use(cors({
     origin:'https://masum-estate.vercel.app',     // frontend url
+    methods: ["GET", "POST", "DELETE", "PUT"],
+    allowedHeaders: [
+        "Content-Type",
+        "Authorization",
+        "Cache-Control",
+        "Expires",
+        "Pragma",
+      ],
     credentials: true
 }))
 
