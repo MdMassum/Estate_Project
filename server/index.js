@@ -16,7 +16,8 @@ dotenv.config()
 const app = express()
 
 app.use(cors({
-    origin:'https://masum-estate.vercel.app',     // frontend url
+    // origin:'https://masum-estate.vercel.app',     // frontend url
+    origin:'http://localhost:5173',
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: [
         "Content-Type",
@@ -27,6 +28,7 @@ app.use(cors({
       ],
     credentials: true
 }))
+app.use(cookieParser()) // for accessing value in cookie
 
 const PORT = process.env.PORT || 3000;
 
@@ -35,7 +37,7 @@ ConnectToMongo();
 
 app.use(express.json())  // we use this to use req.body for json file i.e now we can recieve and send json by req.body (see also body-parser was used earlier when express.json() was not there we can also use bodyParser.json() )
 // app.use(cors()); // for solving issue while connecting frontend and backend
-app.use(cookieParser()) // for accessing value in cookie
+
 
 app.get('/',(req,res)=>{
     res.send("Server Running")

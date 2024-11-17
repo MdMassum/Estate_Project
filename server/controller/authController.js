@@ -1,7 +1,7 @@
 import User from '../models/User.js'
 import bcrypt from 'bcrypt'
 import errorHandler from '../utils/errors.js'
-import jwt from 'jsonwebtoken'
+import sendToken from '../utils/jwtToken.js'
 
 // creating signUp function -->
 export const SignUp = async(req, res, next) =>{
@@ -42,25 +42,9 @@ export const SignIn = async(req, res, next) =>{
             return next(errorHandler(400, "Invalid Credentials !!"))
         }
 
-        const payload = {
-            user: {
-                id: user._id 
-            }
-        };
-        const token = jwt.sign(payload, process.env.JWT_SECRET,{ expiresIn: '1h' });
-        success = true;
-        
         const {password:pass, ...rest} = user._doc;  // for removing password field and sending rest 
     
-        res.cookie('access_token',token,
-        {
-            httpOnly:true,
-            secure: true,  // for production
-            sameSite: 'None',
-            path: '/',
-        })
-        .status(200)
-        .json(rest);
+        sendToken(rest,200,res)
 
     } catch (error) {
         next(error)
@@ -69,25 +53,16 @@ export const SignIn = async(req, res, next) =>{
 
 // creating sign in using google function
 export const Google = async(req,res,next)=>{
+
     const {username, email, photo} = req.body;
-    let success = false;
 
     try {
         let user = await User.findOne({email})
+
         if(user){  // if user exists means we have to create token and login -->
-            const payload = {
-                user: {
-                    id: user._id 
-                }
-            };
-            const token = jwt.sign(payload, process.env.JWT_SECRET,{ expiresIn: '1h' });
-            success = true;
             
             const {password:pass, ...rest} = user._doc;  // for removing password field and sending rest 
-
-            res.cookie('access_token',token,{httpOnly:true})
-            .status(200)
-            .json(rest);
+            sendToken(rest,200,res)
         }
         else{  // user is not registered we have to create new
 
@@ -100,14 +75,8 @@ export const Google = async(req,res,next)=>{
             const user = await User.create({username, email, password:hashPassword, avatar:photo})
 
             // create token for direct login
-            const token = jwt.sign({id:user._id}, process.env.JWT_SECRET,{ expiresIn: '1h' });
-            success = true;
-            
             const {password:pass, ...rest} = user._doc;  // for removing password field and sending rest 
-
-            res.cookie('access_token',token,{httpOnly:true})
-            .status(200)
-            .json(rest);  
+            sendToken(rest,200,res);
         }
     } catch (error) {
         next(error)

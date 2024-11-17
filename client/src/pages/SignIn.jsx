@@ -30,7 +30,8 @@ function SignIn() {
       const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/auth/signin`,{
         method: "POST",
         headers:{"Content-Type": "application/json"},
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
+        credentials:'include'
       });
       const data = await resp.json();
 
