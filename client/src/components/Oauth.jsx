@@ -24,6 +24,7 @@ function Oauth() {
         const res = await fetch(`${import.meta.env.VITE_SERVER_URL}api/auth/google`,{
           method: "POST",
           headers:{"Content-Type": "application/json"},
+          credentials:'include',
           body: JSON.stringify({
             username:result.user.displayName,
             email:result.user.email,
