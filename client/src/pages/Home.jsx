@@ -12,10 +12,12 @@ function Home() {
   const [offerListing, setOfferListing] = useState([]);
   const [rentListing, setRentListing] = useState([]);
   const [saleListing, setSaleListing] = useState([]);
+  const [loading,setLoading] = useState(false);
 
   // fetching offer listings
   const fetchOfferListing=async()=>{
     try {
+      setLoading(true);
        
       const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/listing/getAllListing?offer=true&limit=3`);
       const data = await resp.json();
@@ -24,6 +26,7 @@ function Home() {
       fetchRentListing() // fetching rent listings
 
     } catch (error) {
+      setLoading(false);
       console.log(error)
     }
   }
@@ -39,6 +42,7 @@ function Home() {
       fetchSaleListing() // fetching Sale listings
 
     } catch (error) {
+      setLoading(false);
       console.log(error)
     }
   }
@@ -51,8 +55,9 @@ function Home() {
       const data = await resp.json();
 
       setSaleListing(data);
-
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error)
     }
   }
@@ -61,6 +66,12 @@ function Home() {
 
     fetchOfferListing();
   },[])
+
+  if(loading){
+    return(
+      <div className='flex justify-center items-center h-screen'>LOADING...</div>
+    )
+  }
 
   return (
     <div>
