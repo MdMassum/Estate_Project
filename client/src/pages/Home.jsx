@@ -15,56 +15,88 @@ function Home() {
   const [loading,setLoading] = useState(false);
 
   // fetching offer listings
-  const fetchOfferListing=async()=>{
+  // const fetchOfferListing=async()=>{
+  //   try {
+  //     setLoading(true);
+       
+  //     const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/listing/getAllListing?offer=true&limit=3`);
+  //     const data = await resp.json();
+
+  //     setOfferListing(data);
+  //     fetchRentListing() // fetching rent listings
+
+  //   } catch (error) {
+  //     setLoading(false);
+  //     console.log(error)
+  //   }
+  // }
+
+  // // fetching rent listings
+  // const fetchRentListing=async()=>{
+  //   try {
+       
+  //     const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/listing/getAllListing?type=rent&limit=3`);
+  //     const data = await resp.json();
+
+  //     setRentListing(data);
+  //     fetchSaleListing() // fetching Sale listings
+
+  //   } catch (error) {
+  //     setLoading(false);
+  //     console.log(error)
+  //   }
+  // }
+
+  // // fetching sale listings
+  // const fetchSaleListing=async()=>{
+  //   try {
+       
+  //     const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/listing/getAllListing?type=sale&limit=3`);
+  //     const data = await resp.json();
+
+  //     setSaleListing(data);
+  //     setLoading(false);
+  //   } catch (error) {
+  //     setLoading(false);
+  //     console.log(error)
+  //   }
+  // }
+
+
+  const fetchListingsParallely = async() =>{
     try {
       setLoading(true);
-       
-      const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/listing/getAllListing?offer=true&limit=3`);
-      const data = await resp.json();
+      const serverUrl = import.meta.env.VITE_SERVER_URL;
 
-      setOfferListing(data);
-      fetchRentListing() // fetching rent listings
+      const [offerResp, rentResp, saleResp] = await Promise.all([
+        fetch(`${serverUrl}api/listing/getAllListing?offer=true&limit=3`),
+        fetch(`${serverUrl}api/listing/getAllListing?type=rent&limit=3`),
+        fetch(`${serverUrl}api/listing/getAllListing?type=sale&limit=3`)
+      ]);
 
-    } catch (error) {
-      setLoading(false);
-      console.log(error)
-    }
-  }
+      const [offerData, rentData, saleData] = await Promise.all([
+        offerResp.json(),
+        rentResp.json(),
+        saleResp.json()
+      ]);
 
-  // fetching rent listings
-  const fetchRentListing=async()=>{
-    try {
-       
-      const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/listing/getAllListing?type=rent&limit=3`);
-      const data = await resp.json();
-
-      setRentListing(data);
-      fetchSaleListing() // fetching Sale listings
+      setOfferListing(offerData);
+      setRentListing(rentData);
+      setSaleListing(saleData);
 
     } catch (error) {
+      console.error(error);
+    } finally {
       setLoading(false);
-      console.log(error)
     }
-  }
-
-  // fetching sale listings
-  const fetchSaleListing=async()=>{
-    try {
-       
-      const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}api/listing/getAllListing?type=sale&limit=3`);
-      const data = await resp.json();
-
-      setSaleListing(data);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.log(error)
-    }
+    
   }
 
   useEffect(()=>{
 
-    fetchOfferListing();
+    // this method will fetch sequentially but using promise.all will run multiple api call parallely
+    // fetchOfferListing();
+    fetchListingsParallely();
   },[])
 
   if(loading){
@@ -74,7 +106,7 @@ function Home() {
   }
 
   return (
-    <div>
+    <div> 
       {/* top page */}
       <div className="flex flex-col gap-6 p-28 px-3 mx-auto max-w-6xl">
           <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl dark:text-slate-400'>Find your next 
